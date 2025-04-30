@@ -23,7 +23,7 @@ export const files = pgTable('files', {
 
   //owership info
   userId: text('user_id').notNull(),
-  parent: uuid('parent'), //parent folder id
+  parentId: uuid('parent'), //parent folder id
 
   //file/folder flags
   isFolder: boolean('is_folder').notNull().default(false),
@@ -34,3 +34,23 @@ export const files = pgTable('files', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
+
+/*
+parent:Each file/folder can have one parent folder
+children:Each folder can have many files/folders
+*/
+
+export const filesRelations = relations(files, ({ one, many }) => ({
+  parent: one(files, {
+    fields: [files.parentId],
+    references: [files.id],
+  }),
+
+  //relationship to files/folders
+  children: many(files),
+}));
+
+//Type definitions
+export const File = typeof files.$inferSelect;
+
+export const NewFile = typeof files.$inferInsert;
