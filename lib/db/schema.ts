@@ -42,8 +42,8 @@ children:Each folder can have many files/folders
 
 export const filesRelations = relations(files, ({ one, many }) => ({
   parent: one(files, {
-    fields: [files.parentId],
-    references: [files.id],
+    fields: [files.parentId], //foreign key
+    references: [files.id], //primary key
   }),
 
   //relationship to files/folders
@@ -51,6 +51,6 @@ export const filesRelations = relations(files, ({ one, many }) => ({
 }));
 
 //Type definitions
-export const File = typeof files.$inferSelect;
+export const File = typeof files.$inferSelect; //retrieve data from the database
 
-export const NewFile = typeof files.$inferInsert;
+export const NewFile = typeof files.$inferInsert; //insert data into the database
