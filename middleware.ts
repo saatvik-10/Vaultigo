@@ -3,7 +3,6 @@ import {
   createRouteMatcher,
   auth,
 } from '@clerk/nextjs/server';
-import { is } from 'drizzle-orm';
 import { NextResponse } from 'next/server';
 
 const isPublicRoute = createRouteMatcher(['/', '/sign-in(.*)', '/sign-up(.*)']);
