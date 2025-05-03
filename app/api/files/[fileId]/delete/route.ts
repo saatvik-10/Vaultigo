@@ -45,8 +45,9 @@ export async function DELETE(
         let imagekitFileId = null;
 
         if (file.fileUrl) {
-          const urlWithoutQuery = file.fileUrl.split('?')[0];
-          imagekitFileId = urlWithoutQuery.split('/').pop();
+          //ex- https://ik.imagekit.io/xyz/sunset.png?some=extra
+          const urlWithoutQuery = file.fileUrl.split('?')[0]; //?some=extra
+          imagekitFileId = urlWithoutQuery.split('/').pop(); //sunset.png
         }
 
         if (!imagekitFileId && file.path) {
