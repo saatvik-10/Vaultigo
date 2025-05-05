@@ -51,6 +51,6 @@ export const filesRelations = relations(files, ({ one, many }) => ({
 }));
 
 //Type definitions
-export const File = typeof files.$inferSelect; //retrieve data from the database
+export type File = typeof files.$inferSelect; //retrieve data from the database
 
-export const NewFile = typeof files.$inferInsert; //insert data into the database
+export type NewFile = typeof files.$inferInsert; //insert data into the database

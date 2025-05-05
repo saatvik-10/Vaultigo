@@ -140,6 +140,9 @@ importers:
       react-hook-form:
         specifier: ^7.54.2
         version: 7.56.2(react@18.3.1)
+      tailwind-merge:
+        specifier: ^3.2.0
+        version: 3.2.0
       uuid:
         specifier: ^9.0.1
         version: 9.0.1
@@ -4470,6 +4473,9 @@ packages:
 
   tailwind-merge@2.6.0:
     resolution: {integrity: sha512-P+Vu1qXfzediirmHOC3xKGAYeZtPcV9g76X+xg2FD4tYgR71ewMA35Y3sCz3zhiN/dwefRpJX0yBcgwi1fXNQA==}
+
+  tailwind-merge@3.2.0:
+    resolution: {integrity: sha512-FQT/OVqCD+7edmmJpsgCsY820RTD5AkBryuG5IUqR5YQZSdj5xlH5nLgH7YPths7WsLPSpSBNneJdM8aS8aeFA==}
 
   tailwind-variants@0.3.0:
     resolution: {integrity: sha512-ho2k5kn+LB1fT5XdNS3Clb96zieWxbStE9wNLK7D0AV64kdZMaYzAKo0fWl6fXLPY99ffF9oBJnIj5escEl/8A==}
@@ -10353,6 +10359,8 @@ snapshots:
   tailwind-merge@2.5.4: {}
 
   tailwind-merge@2.6.0: {}
+
+  tailwind-merge@3.2.0: {}
 
   tailwind-variants@0.3.0(tailwindcss@3.4.16):
     dependencies:
