@@ -47,7 +47,7 @@ export default function SignInForm() {
       });
       if (res.status === 'complete') {
         setActive({ session: res.createdSessionId });
-        route.push('/daashboard');
+        route.push('/dashboard');
       } else {
         setAuthError('Invalid credentials');
       }
