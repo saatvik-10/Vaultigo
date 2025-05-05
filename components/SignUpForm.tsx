@@ -107,12 +107,10 @@ export default function signUpForm() {
 
   if (verifying) {
     return (
-      <Card className='w-full max-w-md border border-default-200 bg-default-50 shadow-xl'>
+      <Card className='w-full max-w-md border border-blue bg-slate-50 shadow-xl'>
         <CardHeader className='flex flex-col gap-1 items-center pb-2'>
-          <h1 className='text-2xl font-bold text-default-900'>
-            Verify Your Email
-          </h1>
-          <p className='text-default-500 text-center'>
+          <h1 className='text-2xl font-bold text-pink'>Verify Your Email</h1>
+          <p className='text-blue text-center'>
             We've sent a verification code to your email
           </p>
         </CardHeader>
@@ -131,7 +129,7 @@ export default function signUpForm() {
             <div className='space-y-2'>
               <label
                 htmlFor='verificationCode'
-                className='text-sm font-medium text-default-900'
+                className='text-sm font-medium text-pink'
               >
                 Verification Code
               </label>
@@ -140,16 +138,18 @@ export default function signUpForm() {
                 type='text'
                 placeholder='Enter the 6-digit code'
                 value={verificationCode}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setVerificationCode(e.target.value)}
-                className='w-full'
-                autoFocus
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setVerificationCode(e.target.value)
+                }
+                className='w-full text-pink px-2'
+                variant='underlined'
+                color='primary'
               />
             </div>
 
             <Button
               type='submit'
-              color='primary'
-              className='w-full'
+              className='w-full bg-pink'
               isLoading={isSubmitting}
             >
               {isSubmitting ? 'Verifying...' : 'Verify Email'}
@@ -157,7 +157,7 @@ export default function signUpForm() {
           </form>
 
           <div className='mt-6 text-center'>
-            <p className='text-sm text-default-500'>
+            <p className='text-sm text-default-600'>
               Didn't receive a code?{' '}
               <button
                 onClick={async () => {
@@ -179,12 +179,10 @@ export default function signUpForm() {
   }
 
   return (
-    <Card className='w-full max-w-md border border-default-200 bg-default-50 shadow-xl'>
+    <Card className='w-full max-w-md border border-blue bg-slate-50 shadow-xl'>
       <CardHeader className='flex flex-col gap-1 items-center pb-2'>
-        <h1 className='text-2xl font-bold text-default-900'>
-          Create Your Account
-        </h1>
-        <p className='text-default-500 text-center'>
+        <h1 className='text-2xl font-bold text-pink'>Create Your Account</h1>
+        <p className='text-blue text-center'>
           Sign up to start managing your images securely
         </p>
       </CardHeader>
@@ -201,62 +199,60 @@ export default function signUpForm() {
 
         <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
           <div className='space-y-2'>
-            <label
-              htmlFor='email'
-              className='text-sm font-medium text-default-900'
-            >
+            <label htmlFor='email' className='text-sm font-medium text-pink'>
               Email
             </label>
             <Input
               id='email'
               type='email'
               placeholder='your.email@example.com'
-              startContent={<Mail className='h-4 w-4 text-default-500' />}
+              startContent={<Mail className='h-4 w-4 text-blue' />}
               isInvalid={!!errors.email}
               errorMessage={errors.email?.message}
               {...register('email')}
-              className='w-full'
+              className='w-full px-2 text-pink'
+              variant='underlined'
+              color='primary'
             />
           </div>
 
           <div className='space-y-2'>
-            <label
-              htmlFor='password'
-              className='text-sm font-medium text-default-900'
-            >
+            <label htmlFor='password' className='text-sm font-medium text-pink'>
               Password
             </label>
             <Input
               id='password'
               type={showPassword ? 'text' : 'password'}
               placeholder='••••••••'
-              startContent={<Lock className='h-4 w-4 text-default-500' />}
+              startContent={<Lock className='h-4 w-4 text-blue' />}
               endContent={
                 <Button
                   isIconOnly
                   variant='light'
                   size='sm'
-                  onClick={() => setShowPassword(!showPassword)}
+                  onPress={() => setShowPassword(!showPassword)}
                   type='button'
                 >
                   {showPassword ? (
-                    <EyeOff className='h-4 w-4 text-default-500' />
+                    <EyeOff className='h-4 w-4 text-blue' />
                   ) : (
-                    <Eye className='h-4 w-4 text-default-500' />
+                    <Eye className='h-4 w-4 text-blue' />
                   )}
                 </Button>
               }
               isInvalid={!!errors.password}
               errorMessage={errors.password?.message}
               {...register('password')}
-              className='w-full'
+              className='w-full px-2 text-pink'
+              variant='underlined'
+              color='primary'
             />
           </div>
 
           <div className='space-y-2'>
             <label
               htmlFor='passwordConfirmation'
-              className='text-sm font-medium text-default-900'
+              className='text-sm font-medium text-pink'
             >
               Confirm Password
             </label>
@@ -264,33 +260,35 @@ export default function signUpForm() {
               id='passwordConfirmation'
               type={showConfirmPassword ? 'text' : 'password'}
               placeholder='••••••••'
-              startContent={<Lock className='h-4 w-4 text-default-500' />}
+              startContent={<Lock className='h-4 w-4 text-blue' />}
               endContent={
                 <Button
                   isIconOnly
                   variant='light'
                   size='sm'
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  onPress={() => setShowConfirmPassword(!showConfirmPassword)}
                   type='button'
                 >
                   {showConfirmPassword ? (
-                    <EyeOff className='h-4 w-4 text-default-500' />
+                    <EyeOff className='h-4 w-4 text-blue' />
                   ) : (
-                    <Eye className='h-4 w-4 text-default-500' />
+                    <Eye className='h-4 w-4 text-blue' />
                   )}
                 </Button>
               }
               isInvalid={!!errors.passwordConfirmation}
               errorMessage={errors.passwordConfirmation?.message}
               {...register('passwordConfirmation')}
-              className='w-full'
+              className='w-full px-2 text-pink'
+              variant='underlined'
+              color='primary'
             />
           </div>
 
           <div className='space-y-4'>
             <div className='flex items-start gap-2'>
               <CheckCircle className='h-5 w-5 text-primary mt-0.5' />
-              <p className='text-sm text-default-600'>
+              <p className='text-sm text-blue'>
                 By signing up, you agree to our Terms of Service and Privacy
                 Policy
               </p>
@@ -299,8 +297,7 @@ export default function signUpForm() {
 
           <Button
             type='submit'
-            color='primary'
-            className='w-full'
+            className='w-full bg-pink'
             isLoading={isSubmitting}
           >
             {isSubmitting ? 'Creating account...' : 'Create Account'}
@@ -311,7 +308,7 @@ export default function signUpForm() {
       <Divider />
 
       <CardFooter className='flex justify-center py-4'>
-        <p className='text-sm text-default-600'>
+        <p className='text-sm text-default-500'>
           Already have an account?{' '}
           <Link
             href='/sign-in'
