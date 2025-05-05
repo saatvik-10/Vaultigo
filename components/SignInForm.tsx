@@ -61,10 +61,10 @@ export default function SignInForm() {
   };
 
   return (
-    <Card className='w-full max-w-md border border-default-200 bg-default-50 shadow-xl'>
+    <Card className='w-full max-w-md border border-pink bg-slate-50 shadow-xl'>
       <CardHeader className='flex flex-col gap-1 items-center pb-2'>
-        <h1 className='text-2xl font-bold text-default-900'>Welcome Back</h1>
-        <p className='text-default-500 text-center'>
+        <h1 className='text-2xl font-bold text-blue'>Welcome Back</h1>
+        <p className='text-pink/70 text-center'>
           Sign in to access your secure cloud storage
         </p>
       </CardHeader>
@@ -83,7 +83,7 @@ export default function SignInForm() {
           <div className='space-y-2'>
             <label
               htmlFor='identifier'
-              className='text-sm font-medium text-default-900'
+              className='text-sm font-medium text-blue'
             >
               Email
             </label>
@@ -91,11 +91,13 @@ export default function SignInForm() {
               id='identifier'
               type='email'
               placeholder='your.email@example.com'
-              startContent={<Mail className='h-4 w-4 text-default-500' />}
+              className='w-full px-2 text-blue'
+              variant='underlined'
+              color='primary'
+              startContent={<Mail className='h-4 w-4 text-pink' />}
               isInvalid={!!errors.identifier}
               errorMessage={errors.identifier?.message}
               {...register('identifier')}
-              className='w-full'
             />
           </div>
 
@@ -103,7 +105,7 @@ export default function SignInForm() {
             <div className='flex justify-between items-center'>
               <label
                 htmlFor='password'
-                className='text-sm font-medium text-default-900'
+                className='text-sm font-medium text-blue'
               >
                 Password
               </label>
@@ -112,26 +114,28 @@ export default function SignInForm() {
               id='password'
               type={showPassword ? 'text' : 'password'}
               placeholder='••••••••'
-              startContent={<Lock className='h-4 w-4 text-default-500' />}
+              startContent={<Lock className='h-4 w-4 text-pink' />}
               endContent={
                 <Button
                   isIconOnly
                   variant='light'
                   size='sm'
-                  onClick={() => setShowPassword(!showPassword)}
+                  onPress={() => setShowPassword(!showPassword)}
                   type='button'
                 >
                   {showPassword ? (
-                    <EyeOff className='h-4 w-4 text-default-500' />
+                    <EyeOff className='h-4 w-4 text-pink' />
                   ) : (
-                    <Eye className='h-4 w-4 text-default-500' />
+                    <Eye className='h-4 w-4 text-pink' />
                   )}
                 </Button>
               }
               isInvalid={!!errors.password}
               errorMessage={errors.password?.message}
               {...register('password')}
-              className='w-full'
+              className='w-full px-2 text-blue'
+              variant='underlined'
+              color='primary'
             />
           </div>
 
@@ -149,11 +153,11 @@ export default function SignInForm() {
       <Divider />
 
       <CardFooter className='flex justify-center py-4'>
-        <p className='text-sm text-default-600'>
+        <p className='text-sm text-default-500'>
           Don't have an account?{' '}
           <Link
             href='/sign-up'
-            className='text-primary hover:underline font-medium'
+            className='text-pink hover:underline font-medium'
           >
             Sign up
           </Link>
