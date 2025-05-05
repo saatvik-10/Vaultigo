@@ -140,7 +140,7 @@ export default function signUpForm() {
                 type='text'
                 placeholder='Enter the 6-digit code'
                 value={verificationCode}
-                onChange={(e) => setVerificationCode(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setVerificationCode(e.target.value)}
                 className='w-full'
                 autoFocus
               />
@@ -181,7 +181,7 @@ export default function signUpForm() {
   return (
     <Card className='w-full max-w-md border border-default-200 bg-default-50 shadow-xl'>
       <CardHeader className='flex flex-col gap-1 items-center pb-2'>
-        <h1 className='text-2xl font-bold text-default-900'>
+        <h1 className='text-2xl font-bold text-red-400'>
           Create Your Account
         </h1>
         <p className='text-default-500 text-center'>
