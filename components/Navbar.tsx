@@ -3,7 +3,7 @@
 import { useClerk, SignedIn, SignedOut } from '@clerk/nextjs';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { CloudUpload, ChevronDown, User, Menu, X } from 'lucide-react';
+import { ChevronDown, User, Menu, X } from 'lucide-react';
 import {
   Dropdown,
   DropdownTrigger,
@@ -129,7 +129,7 @@ export default function Navbar({ user }: NavbarProps) {
 
   return (
     <header
-      className={`bg-default-50 border-b sticky top-0 z-50 transition-shadow ${isScrolled ? 'shadow-sm' : ''}`}
+      className={`bg-slate-50 border-b sticky top-0 z-50 transition-shadow ${isScrolled ? 'shadow-sm' : ''}`}
       style={{ borderColor: '#2D71C9' }}
     >
       <div className='container mx-auto py-3 md:py-4 px-4 md:px-6'>
@@ -137,7 +137,7 @@ export default function Navbar({ user }: NavbarProps) {
           {/* Logo */}
           <Link href='/' className='flex items-center gap-2 z-10'>
             <img src='/vaultigo.png' alt='Vaultigo Logo' className='h-8 w-8' />
-            <h1 className='text-xl font-bold'>Vaultigo</h1>
+            <h1 className='text-xl text-blue font-bold'>Vaultigo</h1>
           </Link>
 
           {/* Desktop Navigation */}
@@ -145,12 +145,12 @@ export default function Navbar({ user }: NavbarProps) {
             {/* Show these buttons when user is signed out */}
             <SignedOut>
               <Link href='/sign-in'>
-                <Button variant='flat' color='primary'>
+                <Button variant='flat' className='bg-blue'>
                   Sign In
                 </Button>
               </Link>
               <Link href='/sign-up'>
-                <Button variant='solid' color='primary'>
+                <Button variant='solid' className='bg-pink'>
                   Sign Up
                 </Button>
               </Link>
@@ -256,7 +256,7 @@ export default function Navbar({ user }: NavbarProps) {
           {/* Mobile Menu */}
           <div
             ref={mobileMenuRef}
-            className={`fixed top-0 right-0 bottom-0 w-4/5 max-w-sm bg-default-50 z-40 flex flex-col pt-20 px-6 shadow-xl transition-transform duration-300 ease-in-out ${
+            className={`fixed top-0 right-0 bottom-0 w-4/5 max-w-sm bg-slate-50 z-40 flex flex-col pt-20 px-6 shadow-xl transition-transform duration-300 ease-in-out ${
               isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
             } md:hidden`}
           >

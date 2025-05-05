@@ -13,6 +13,10 @@ const config = {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
       },
+      colors: {
+        blue: '#2D71C9',
+        pink: '#E22D2D',
+      },
     },
   },
   darkMode: "class",
