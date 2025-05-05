@@ -24,7 +24,7 @@ export default async function Dashboard() {
     : null;
 
   return (
-    <div className='min-h-screen flex flex-col bg-default-50'>
+    <div className='min-h-screen flex flex-col bg-slate-50'>
       <Navbar user={serializedUser} />
 
       <main className='flex-1 container mx-auto py-8 px-6'>
@@ -40,7 +40,7 @@ export default async function Dashboard() {
       </main>
 
       <footer
-        className='bg-default-50 border-t py-6'
+        className='bg-slate-50 border-t py-6'
         style={{ borderColor: '#2D71C9' }}
       >
         <div className='container mx-auto px-6'>

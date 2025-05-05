@@ -44,21 +44,6 @@ export default function DashboardContent({
 
   return (
     <>
-      <div className="mb-8">
-        <h2 className="text-4xl font-bold text-default-900">
-          Hi,{" "}
-          <span className="text-primary">
-            {userName?.length > 10
-              ? `${userName?.substring(0, 10)}...`
-              : userName?.split(" ")[0] || "there"}
-          </span>
-          !
-        </h2>
-        <p className="text-default-600 mt-2 text-lg">
-          Your images are waiting for you.
-        </p>
-      </div>
-
       <Tabs
         aria-label="Dashboard Tabs"
         color="primary"

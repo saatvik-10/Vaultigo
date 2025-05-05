@@ -72,7 +72,7 @@ export default function UserProfile() {
   };
 
   return (
-    <Card className='max-w-md mx-auto border border-default-200 bg-default-50 shadow-sm hover:shadow-md transition-shadow'>
+    <Card className='max-w-md mx-auto border border-default-200 bg-defaulslate-50 shadow-sm hover:shadow-md transition-shadow'>
       <CardHeader className='flex gap-3'>
         <User className='h-6 w-6 text-primary' />
         <h2 className='text-xl font-semibold'>User Profile</h2>
