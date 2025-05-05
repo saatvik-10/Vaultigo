@@ -51,8 +51,7 @@ export default function Home() {
                     <Link href='/dashboard'>
                       <Button
                         size='lg'
-                        variant='solid'
-                        color='primary'
+                        className='bg-pink'
                         endContent={<ArrowRight className='h-4 w-4' />}
                       >
                         Go to Dashboard
@@ -144,8 +143,7 @@ export default function Home() {
               <Link href='/dashboard'>
                 <Button
                   size='lg'
-                  variant='solid'
-                  color='primary'
+                  className='bg-pink'
                   endContent={<ArrowRight className='h-4 w-4' />}
                 >
                   Dashboard

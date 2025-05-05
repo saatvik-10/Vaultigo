@@ -161,19 +161,19 @@ export default function Navbar({ user }: NavbarProps) {
               <div className='flex items-center gap-4'>
                 {!isOnDashboard && (
                   <Link href='/dashboard'>
-                    <Button variant='flat' color='primary'>
+                    <Button className='bg-pink'>
                       Dashboard
                     </Button>
                   </Link>
                 )}
-                <Dropdown>
+                <Dropdown className='bg-slate-50'>
                   <DropdownTrigger>
                     <Button
                       variant='flat'
                       className='p-0 bg-transparent min-w-0'
                       endContent={<ChevronDown className='h-4 w-4 ml-2' />}
                     >
-                      <div className='flex items-center gap-2'>
+                      <div className='flex items-center gap-2 text-blue'>
                         <Avatar
                           name={userDetails.initials}
                           size='sm'
@@ -182,7 +182,7 @@ export default function Navbar({ user }: NavbarProps) {
                           style={{ borderColor: '#E22D2D' }}
                           fallback={<User className='h-4 w-4' />}
                         />
-                        <span className='text-default-600 hidden sm:inline'>
+                        <span className='hidden sm:inline'>
                           {userDetails.displayName}
                         </span>
                       </div>
@@ -191,6 +191,7 @@ export default function Navbar({ user }: NavbarProps) {
                   <DropdownMenu aria-label='User actions'>
                     <DropdownItem
                       key='profile'
+                      className='text-blue hover:bg-blue/30'
                       description={userDetails.email || 'View your profile'}
                       onClick={() => router.push('/dashboard?tab=profile')}
                     >
@@ -198,6 +199,7 @@ export default function Navbar({ user }: NavbarProps) {
                     </DropdownItem>
                     <DropdownItem
                       key='files'
+                      className='text-blue hover:bg-blue/30'
                       description='Manage your files'
                       onClick={() => router.push('/dashboard')}
                     >
@@ -206,7 +208,7 @@ export default function Navbar({ user }: NavbarProps) {
                     <DropdownItem
                       key='logout'
                       description='Sign out of your account'
-                      className='text-danger'
+                      className='text-pink hover:bg-pink/30'
                       color='danger'
                       onClick={handleSignOut}
                     >
@@ -237,9 +239,9 @@ export default function Navbar({ user }: NavbarProps) {
               data-menu-button='true'
             >
               {isMobileMenuOpen ? (
-                <X className='h-6 w-6 text-default-700' />
+                <X className='h-6 w-6 text-blue' />
               ) : (
-                <Menu className='h-6 w-6 text-default-700' />
+                <Menu className='h-6 w-6 text-blue' />
               )}
             </button>
           </div>
@@ -286,7 +288,7 @@ export default function Navbar({ user }: NavbarProps) {
             <SignedIn>
               <div className='flex flex-col gap-6'>
                 {/* User info */}
-                <div className='flex items-center gap-3 py-4 border-b border-default-200'>
+                <div className='flex itefms-center gap-3 py-4 border-b border-default-200'>
                   <Avatar
                     name={userDetails.initials}
                     size='md'
@@ -295,7 +297,7 @@ export default function Navbar({ user }: NavbarProps) {
                     style={{ borderColor: '#E22D2D' }}
                     fallback={<User className='h-5 w-5' />}
                   />
-                  <div>
+                  <div className='text-blue'>
                     <p className='font-medium'>{userDetails.displayName}</p>
                     <p className='text-sm text-default-500'>
                       {userDetails.email}
@@ -308,7 +310,7 @@ export default function Navbar({ user }: NavbarProps) {
                   {!isOnDashboard && (
                     <Link
                       href='/dashboard'
-                      className='py-2 px-3 hover:bg-default-100 rounded-md transition-colors'
+                      className='py-2 px-3 hover:bg-blue/30 rounded-md transition-colors text-blue'
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Dashboard
@@ -316,13 +318,13 @@ export default function Navbar({ user }: NavbarProps) {
                   )}
                   <Link
                     href='/dashboard?tab=profile'
-                    className='py-2 px-3 hover:bg-default-100 rounded-md transition-colors'
+                    className='py-2 px-3 hover:bg-blue/30 rounded-md transition-colors text-blue'
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Profile
                   </Link>
                   <button
-                    className='py-2 px-3 text-left text-danger hover:bg-danger-50 rounded-md transition-colors mt-4'
+                    className='py-2 px-3 text-left text-pink hover:bg-pink/30 rounded-md transition-colors'
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                       handleSignOut();
