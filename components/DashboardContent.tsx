@@ -67,10 +67,10 @@ export default function DashboardContent({
         >
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-1">
-              <Card className="border border-default-200 bg-default-50 shadow-sm hover:shadow-md transition-shadow">
+              <Card className="border border-pink bg-slate-50 shadow-sm hover:shadow-md transition-shadow">
                 <CardHeader className="flex gap-3">
                   <FileUp className="h-5 w-5 text-primary" />
-                  <h2 className="text-xl font-semibold">Upload</h2>
+                  <h2 className="text-xl text-pink font-semibold">Upload</h2>
                 </CardHeader>
                 <CardBody>
                   <FileUploadForm

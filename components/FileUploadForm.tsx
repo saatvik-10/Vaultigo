@@ -48,7 +48,6 @@ export default function FileUploadForm({
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
 
-      // Validate file size (5MB limit)
       if (selectedFile.size > 5 * 1024 * 1024) {
         setError("File size exceeds 5MB limit");
         return;
@@ -64,7 +63,6 @@ export default function FileUploadForm({
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const droppedFile = e.dataTransfer.files[0];
 
-      // Validate file size (5MB limit)
       if (droppedFile.size > 5 * 1024 * 1024) {
         setError("File size exceeds 5MB limit");
         return;
@@ -192,20 +190,16 @@ export default function FileUploadForm({
       {/* Action buttons */}
       <div className="flex gap-2 mb-2">
         <Button
-          color="primary"
-          variant="flat"
           startContent={<FolderPlus className="h-4 w-4" />}
-          onClick={() => setFolderModalOpen(true)}
-          className="flex-1"
+          onPress={() => setFolderModalOpen(true)}
+          className="flex-1 bg-blue"
         >
           New Folder
         </Button>
         <Button
-          color="primary"
-          variant="flat"
           startContent={<FileUp className="h-4 w-4" />}
-          onClick={() => fileInputRef.current?.click()}
-          className="flex-1"
+          onPress={() => fileInputRef.current?.click()}
+          className="flex-1 bg-blue"
         >
           Add Image
         </Button>
@@ -215,7 +209,7 @@ export default function FileUploadForm({
       <div
         onDrop={handleDrop}
         onDragOver={handleDragOver}
-        className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
+        className={`border-2 border-dashed border-pink rounded-lg p-6 text-center transition-colors ${
           error
             ? "border-danger/30 bg-danger/5"
             : file
@@ -227,7 +221,7 @@ export default function FileUploadForm({
           <div className="space-y-3">
             <FileUp className="h-12 w-12 mx-auto text-primary/70" />
             <div>
-              <p className="text-default-600">
+              <p className="text-pink ">
                 Drag and drop your image here, or{" "}
                 <button
                   type="button"
@@ -271,7 +265,7 @@ export default function FileUploadForm({
                 isIconOnly
                 variant="light"
                 size="sm"
-                onClick={clearFile}
+                onPress={clearFile}
                 className="text-default-500"
               >
                 <X className="h-4 w-4" />
@@ -299,7 +293,7 @@ export default function FileUploadForm({
               color="primary"
               startContent={<Upload className="h-4 w-4" />}
               endContent={!uploading && <ArrowRight className="h-4 w-4" />}
-              onClick={handleUpload}
+              onPress={handleUpload}
               isLoading={uploading}
               className="w-full"
               isDisabled={!!error}
@@ -311,9 +305,9 @@ export default function FileUploadForm({
       </div>
 
       {/* Upload tips */}
-      <div className="bg-default-100/5 p-4 rounded-lg">
+      <div className="bg-blue p-4 rounded-lg">
         <h4 className="text-sm font-medium mb-2">Tips</h4>
-        <ul className="text-xs text-default-600 space-y-1">
+        <ul className="text-xs text-default-700 space-y-1">
           <li>• Images are private and only visible to you</li>
           <li>• Supported formats: JPG, PNG, GIF, WebP</li>
           <li>• Maximum file size: 5MB</li>

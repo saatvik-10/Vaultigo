@@ -237,7 +237,7 @@ export default function FileList({
       if (file.type.startsWith("image/")) {
         // Create a download-optimized URL with ImageKit
         // Using high quality and original dimensions for downloads
-        const downloadUrl = `${process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT}/tr:q-100,orig-true/${file.path}`;
+        const downloadUrl = `${process.env.NEXT_PUBLIC_URL_ENDPOINT}/tr:q-100,orig-true/${file.path}`;
 
         // Fetch the image first to ensure it's available
         const response = await fetch(downloadUrl);
@@ -314,7 +314,7 @@ export default function FileList({
     if (file.type.startsWith("image/")) {
       // Create an optimized URL with ImageKit transformations for viewing
       // Using higher quality and responsive sizing for better viewing experience
-      const optimizedUrl = `${process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT}/tr:q-90,w-1600,h-1200,fo-auto/${file.path}`;
+      const optimizedUrl = `${process.env.NEXT_PUBLIC_URL_ENDPOINT}/tr:q-90,w-1600,h-1200,fo-auto/${file.path}`;
       window.open(optimizedUrl, "_blank");
     }
   };

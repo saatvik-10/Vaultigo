@@ -54,7 +54,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
       <ImageKitProvider
         authenticator={authenticator}
         publicKey={process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY || ''}
-        urlEndpoint={process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT || ''}
+        urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT || ''}
       >
         <ImageKitAuthContext.Provider value={{ authenticate: authenticator }}>
           <ToastProvider placement='top-right' />
