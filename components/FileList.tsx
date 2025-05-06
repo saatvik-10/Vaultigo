@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEffect, useState, useMemo } from "react";
-import { Folder, Star, Trash, X, ExternalLink } from "lucide-react";
+import { useEffect, useState, useMemo } from 'react';
+import { Folder, Star, Trash, X, ExternalLink } from 'lucide-react';
 import {
   Table,
   TableHeader,
@@ -9,22 +9,22 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from "@heroui/table";
-import { Divider } from "@heroui/divider";
-import { Tooltip } from "@heroui/tooltip";
-import { Card } from "@heroui/card";
-import { addToast } from "@heroui/toast";
-import { formatDistanceToNow, format } from "date-fns";
-import type { File as FileType } from "@/lib/db/schema";
-import axios from "axios";
-import ConfirmationModal from "@/components/ui/ConfirmationModal";
-import FileEmptyState from "@/components/FileEmptyState";
-import FileIcon from "@/components/FileIcon";
-import FileActions from "@/components/FileActions";
-import FileLoadingState from "@/components/FileLoadingState";
-import FileTabs from "@/components/FileTabs";
-import FolderNavigation from "@/components/FolderNavigation";
-import FileActionButtons from "@/components/FileActionButtons";
+} from '@heroui/table';
+import { Divider } from '@heroui/divider';
+import { Tooltip } from '@heroui/tooltip';
+import { Card } from '@heroui/card';
+import { addToast } from '@heroui/toast';
+import { formatDistanceToNow, format } from 'date-fns';
+import type { File as FileType } from '@/lib/db/schema';
+import axios from 'axios';
+import ConfirmationModal from '@/components/ui/ConfirmationModal';
+import FileEmptyState from '@/components/FileEmptyState';
+import FileIcon from '@/components/FileIcon';
+import FileActions from '@/components/FileActions';
+import FileLoadingState from '@/components/FileLoadingState';
+import FileTabs from '@/components/FileTabs';
+import FolderNavigation from '@/components/FolderNavigation';
+import FileActionButtons from '@/components/FileActionButtons';
 
 interface FileListProps {
   userId: string;
@@ -39,7 +39,7 @@ export default function FileList({
 }: FileListProps) {
   const [files, setFiles] = useState<FileType[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState('all');
   const [currentFolder, setCurrentFolder] = useState<string | null>(null);
   const [folderPath, setFolderPath] = useState<
     Array<{ id: string; name: string }>
@@ -62,11 +62,11 @@ export default function FileList({
       const response = await axios.get(url);
       setFiles(response.data);
     } catch (error) {
-      console.error("Error fetching files:", error);
+      console.error('Error fetching files:', error);
       addToast({
-        title: "Error Loading Files",
+        title: 'Error Loading Files',
         description: "We couldn't load your files. Please try again later.",
-        color: "danger",
+        color: 'danger',
       });
     } finally {
       setLoading(false);
@@ -81,11 +81,11 @@ export default function FileList({
   // Filter files based on active tab
   const filteredFiles = useMemo(() => {
     switch (activeTab) {
-      case "starred":
+      case 'starred':
         return files.filter((file) => file.isStarred && !file.isTrashed);
-      case "trash":
+      case 'trash':
         return files.filter((file) => file.isTrashed);
-      case "all":
+      case 'all':
       default:
         return files.filter((file) => !file.isTrashed);
     }
@@ -115,18 +115,18 @@ export default function FileList({
       // Show toast
       const file = files.find((f) => f.id === fileId);
       addToast({
-        title: file?.isStarred ? "Removed from Starred" : "Added to Starred",
+        title: file?.isStarred ? 'Removed from Starred' : 'Added to Starred',
         description: `"${file?.name}" has been ${
-          file?.isStarred ? "removed from" : "added to"
+          file?.isStarred ? 'removed from' : 'added to'
         } your starred files`,
-        color: "success",
+        color: 'success',
       });
     } catch (error) {
-      console.error("Error starring file:", error);
+      console.error('Error starring file:', error);
       addToast({
-        title: "Action Failed",
+        title: 'Action Failed',
         description: "We couldn't update the star status. Please try again.",
-        color: "danger",
+        color: 'danger',
       });
     }
   };
@@ -146,18 +146,20 @@ export default function FileList({
       // Show toast
       const file = files.find((f) => f.id === fileId);
       addToast({
-        title: responseData.isTrashed ? "Moved to Trash" : "Restored from Trash",
+        title: responseData.isTrashed
+          ? 'Moved to Trash'
+          : 'Restored from Trash',
         description: `"${file?.name}" has been ${
-          responseData.isTrashed ? "moved to trash" : "restored"
+          responseData.isTrashed ? 'moved to trash' : 'restored'
         }`,
-        color: "success",
+        color: 'success',
       });
     } catch (error) {
-      console.error("Error trashing file:", error);
+      console.error('Error trashing file:', error);
       addToast({
-        title: "Action Failed",
+        title: 'Action Failed',
         description: "We couldn't update the file status. Please try again.",
-        color: "danger",
+        color: 'danger',
       });
     }
   };
@@ -166,7 +168,7 @@ export default function FileList({
     try {
       // Store file info before deletion for the toast message
       const fileToDelete = files.find((f) => f.id === fileId);
-      const fileName = fileToDelete?.name || "File";
+      const fileName = fileToDelete?.name || 'File';
 
       // Send delete request
       const response = await axios.delete(`/api/files/${fileId}/delete`);
@@ -177,22 +179,22 @@ export default function FileList({
 
         // Show success toast
         addToast({
-          title: "File Permanently Deleted",
+          title: 'File Permanently Deleted',
           description: `"${fileName}" has been permanently removed`,
-          color: "success",
+          color: 'success',
         });
 
         // Close modal if it was open
         setDeleteModalOpen(false);
       } else {
-        throw new Error(response.data.error || "Failed to delete file");
+        throw new Error(response.data.error || 'Failed to delete file');
       }
     } catch (error) {
-      console.error("Error deleting file:", error);
+      console.error('Error deleting file:', error);
       addToast({
-        title: "Deletion Failed",
+        title: 'Deletion Failed',
         description: "We couldn't delete the file. Please try again later.",
-        color: "danger",
+        color: 'danger',
       });
     }
   };
@@ -206,19 +208,19 @@ export default function FileList({
 
       // Show toast
       addToast({
-        title: "Trash Emptied",
+        title: 'Trash Emptied',
         description: `All ${trashCount} items have been permanently deleted`,
-        color: "success",
+        color: 'success',
       });
 
       // Close modal
       setEmptyTrashModalOpen(false);
     } catch (error) {
-      console.error("Error emptying trash:", error);
+      console.error('Error emptying trash:', error);
       addToast({
-        title: "Action Failed",
+        title: 'Action Failed',
         description: "We couldn't empty the trash. Please try again later.",
-        color: "danger",
+        color: 'danger',
       });
     }
   };
@@ -228,13 +230,13 @@ export default function FileList({
     try {
       // Show loading toast
       const loadingToastId = addToast({
-        title: "Preparing Download",
+        title: 'Preparing Download',
         description: `Getting "${file.name}" ready for download...`,
-        color: "primary",
+        color: 'primary',
       });
 
       // For images, we can use the ImageKit URL directly with optimized settings
-      if (file.type.startsWith("image/")) {
+      if (file.type.startsWith('image/')) {
         // Create a download-optimized URL with ImageKit
         // Using high quality and original dimensions for downloads
         const downloadUrl = `${process.env.NEXT_PUBLIC_URL_ENDPOINT}/tr:q-100,orig-true/${file.path}`;
@@ -250,16 +252,16 @@ export default function FileList({
 
         // Create a download link
         const blobUrl = URL.createObjectURL(blob);
-        const link = document.createElement("a");
+        const link = document.createElement('a');
         link.href = blobUrl;
         link.download = file.name;
         document.body.appendChild(link);
 
         // Remove loading toast and show success toast
         addToast({
-          title: "Download Ready",
+          title: 'Download Ready',
           description: `"${file.name}" is ready to download.`,
-          color: "success",
+          color: 'success',
         });
 
         // Trigger download
@@ -280,16 +282,16 @@ export default function FileList({
 
         // Create a download link
         const blobUrl = URL.createObjectURL(blob);
-        const link = document.createElement("a");
+        const link = document.createElement('a');
         link.href = blobUrl;
         link.download = file.name;
         document.body.appendChild(link);
 
         // Remove loading toast and show success toast
         addToast({
-          title: "Download Ready",
+          title: 'Download Ready',
           description: `"${file.name}" is ready to download.`,
-          color: "success",
+          color: 'success',
         });
 
         // Trigger download
@@ -300,22 +302,22 @@ export default function FileList({
         URL.revokeObjectURL(blobUrl);
       }
     } catch (error) {
-      console.error("Error downloading file:", error);
+      console.error('Error downloading file:', error);
       addToast({
-        title: "Download Failed",
+        title: 'Download Failed',
         description: "We couldn't download the file. Please try again later.",
-        color: "danger",
+        color: 'danger',
       });
     }
   };
 
   // Function to open image in a new tab with optimized view
   const openImageViewer = (file: FileType) => {
-    if (file.type.startsWith("image/")) {
+    if (file.type.startsWith('image/')) {
       // Create an optimized URL with ImageKit transformations for viewing
       // Using higher quality and responsive sizing for better viewing experience
       const optimizedUrl = `${process.env.NEXT_PUBLIC_URL_ENDPOINT}/tr:q-90,w-1600,h-1200,fo-auto/${file.path}`;
-      window.open(optimizedUrl, "_blank");
+      window.open(optimizedUrl, '_blank');
     }
   };
 
@@ -374,7 +376,7 @@ export default function FileList({
   const handleItemClick = (file: FileType) => {
     if (file.isFolder) {
       navigateToFolder(file.id, file.name);
-    } else if (file.type.startsWith("image/")) {
+    } else if (file.type.startsWith('image/')) {
       openImageViewer(file);
     }
   };
@@ -384,7 +386,7 @@ export default function FileList({
   }
 
   return (
-    <div className="space-y-6">
+    <div className='space-y-6'>
       {/* Tabs for filtering files */}
       <FileTabs
         activeTab={activeTab}
@@ -395,7 +397,7 @@ export default function FileList({
       />
 
       {/* Folder navigation */}
-      {activeTab === "all" && (
+      {activeTab === 'all' && (
         <FolderNavigation
           folderPath={folderPath}
           navigateUp={navigateUp}
@@ -412,33 +414,33 @@ export default function FileList({
         onEmptyTrash={() => setEmptyTrashModalOpen(true)}
       />
 
-      <Divider className="my-4" />
+      <Divider className='my-4' />
 
       {/* Files table */}
       {filteredFiles.length === 0 ? (
         <FileEmptyState activeTab={activeTab} />
       ) : (
         <Card
-          shadow="sm"
-          className="border border-default-200 bg-default-50 overflow-hidden"
+          shadow='sm'
+          className='border border-pink bg-slate-50 overflow-hidden'
         >
-          <div className="overflow-x-auto">
+          <div className='overflow-x-auto'>
             <Table
-              aria-label="Files table"
+              aria-label='Files table'
               isStriped
-              color="default"
-              selectionMode="none"
+              color='default'
+              selectionMode='none'
               classNames={{
-                base: "min-w-full",
-                th: "bg-default-100 text-default-800 font-medium text-sm",
-                td: "py-4",
+                base: 'min-w-full',
+                th: 'bg-default-100 text-default-800 font-medium text-sm',
+                td: 'py-4',
               }}
             >
               <TableHeader>
                 <TableColumn>Name</TableColumn>
-                <TableColumn className="hidden sm:table-cell">Type</TableColumn>
-                <TableColumn className="hidden md:table-cell">Size</TableColumn>
-                <TableColumn className="hidden sm:table-cell">
+                <TableColumn className='hidden sm:table-cell'>Type</TableColumn>
+                <TableColumn className='hidden md:table-cell'>Size</TableColumn>
+                <TableColumn className='hidden sm:table-cell'>
                   Added
                 </TableColumn>
                 <TableColumn width={240}>Actions</TableColumn>
@@ -448,40 +450,40 @@ export default function FileList({
                   <TableRow
                     key={file.id}
                     className={`hover:bg-default-100 transition-colors ${
-                      file.isFolder || file.type.startsWith("image/")
-                        ? "cursor-pointer"
-                        : ""
+                      file.isFolder || file.type.startsWith('image/')
+                        ? 'cursor-pointer'
+                        : ''
                     }`}
                     onClick={() => handleItemClick(file)}
                   >
                     <TableCell>
-                      <div className="flex items-center gap-3">
+                      <div className='flex items-center gap-3'>
                         <FileIcon file={file} />
                         <div>
-                          <div className="font-medium flex items-center gap-2 text-default-800">
-                            <span className="truncate max-w-[150px] sm:max-w-[200px] md:max-w-[300px]">
+                          <div className='font-medium flex items-center gap-2 text-default-800'>
+                            <span className='truncate max-w-[150px] sm:max-w-[200px] md:max-w-[300px]'>
                               {file.name}
                             </span>
                             {file.isStarred && (
-                              <Tooltip content="Starred">
+                              <Tooltip content='Starred'>
                                 <Star
-                                  className="h-4 w-4 text-yellow-400"
-                                  fill="currentColor"
+                                  className='h-4 w-4 text-yellow-400'
+                                  fill='currentColor'
                                 />
                               </Tooltip>
                             )}
                             {file.isFolder && (
-                              <Tooltip content="Folder">
-                                <Folder className="h-3 w-3 text-default-400" />
+                              <Tooltip content='Folder'>
+                                <Folder className='h-3 w-3 text-default-400' />
                               </Tooltip>
                             )}
-                            {file.type.startsWith("image/") && (
-                              <Tooltip content="Click to view image">
-                                <ExternalLink className="h-3 w-3 text-default-400" />
+                            {file.type.startsWith('image/') && (
+                              <Tooltip content='Click to view image'>
+                                <ExternalLink className='h-3 w-3 text-default-400' />
                               </Tooltip>
                             )}
                           </div>
-                          <div className="text-xs text-default-500 sm:hidden">
+                          <div className='text-xs text-default-500 sm:hidden'>
                             {formatDistanceToNow(new Date(file.createdAt), {
                               addSuffix: true,
                             })}
@@ -489,15 +491,15 @@ export default function FileList({
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      <div className="text-xs text-default-500">
-                        {file.isFolder ? "Folder" : file.type}
+                    <TableCell className='hidden sm:table-cell'>
+                      <div className='text-xs text-default-500'>
+                        {file.isFolder ? 'Folder' : file.type}
                       </div>
                     </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      <div className="text-default-700">
+                    <TableCell className='hidden md:table-cell'>
+                      <div className='text-default-700'>
                         {file.isFolder
-                          ? "-"
+                          ? '-'
                           : file.size < 1024
                             ? `${file.size} B`
                             : file.size < 1024 * 1024
@@ -505,15 +507,15 @@ export default function FileList({
                               : `${(file.size / (1024 * 1024)).toFixed(1)} MB`}
                       </div>
                     </TableCell>
-                    <TableCell className="hidden sm:table-cell">
+                    <TableCell className='hidden sm:table-cell'>
                       <div>
-                        <div className="text-default-700">
+                        <div className='text-default-700'>
                           {formatDistanceToNow(new Date(file.createdAt), {
                             addSuffix: true,
                           })}
                         </div>
-                        <div className="text-xs text-default-500 mt-1">
-                          {format(new Date(file.createdAt), "MMMM d, yyyy")}
+                        <div className='text-xs text-default-500 mt-1'>
+                          {format(new Date(file.createdAt), 'MMMM d, yyyy')}
                         </div>
                       </div>
                     </TableCell>
@@ -541,12 +543,12 @@ export default function FileList({
       <ConfirmationModal
         isOpen={deleteModalOpen}
         onOpenChange={setDeleteModalOpen}
-        title="Confirm Permanent Deletion"
+        title='Confirm Permanent Deletion'
         description={`Are you sure you want to permanently delete this file?`}
         icon={X}
-        iconColor="text-danger"
-        confirmText="Delete Permanently"
-        confirmColor="danger"
+        iconColor='text-danger'
+        confirmText='Delete Permanently'
+        confirmColor='danger'
         onConfirm={() => {
           if (selectedFile) {
             handleDeleteFile(selectedFile.id);
@@ -560,12 +562,12 @@ export default function FileList({
       <ConfirmationModal
         isOpen={emptyTrashModalOpen}
         onOpenChange={setEmptyTrashModalOpen}
-        title="Empty Trash"
+        title='Empty Trash'
         description={`Are you sure you want to empty the trash?`}
         icon={Trash}
-        iconColor="text-danger"
-        confirmText="Empty Trash"
-        confirmColor="danger"
+        iconColor='text-danger'
+        confirmText='Empty Trash'
+        confirmColor='danger'
         onConfirm={handleEmptyTrash}
         isDangerous={true}
         warningMessage={`You are about to permanently delete all ${trashCount} items in your trash. These files will be permanently removed from your account and cannot be recovered.`}

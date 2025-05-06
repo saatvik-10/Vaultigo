@@ -209,7 +209,7 @@ export default function FileUploadForm({
       <div
         onDrop={handleDrop}
         onDragOver={handleDragOver}
-        className={`border-2 border-dashed border-pink rounded-lg p-6 text-center transition-colors ${
+        className={`border-2 border-dashed border-pink rounded-lg p-6 text-center transition-colors cursor-pointer hover:border-pink/40 ${
           error
             ? "border-danger/30 bg-danger/5"
             : file
@@ -219,7 +219,7 @@ export default function FileUploadForm({
       >
         {!file ? (
           <div className="space-y-3">
-            <FileUp className="h-12 w-12 mx-auto text-primary/70" />
+            <FileUp className="h-12 w-12 mx-auto text-blue" />
             <div>
               <p className="text-pink ">
                 Drag and drop your image here, or{" "}
@@ -246,7 +246,7 @@ export default function FileUploadForm({
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="p-2 bg-primary/10 rounded-md">
-                  <FileUp className="h-5 w-5 text-primary" />
+                  <FileUp className="h-5 w-5 text-blue" />
                 </div>
                 <div className="text-left">
                   <p className="text-sm font-medium truncate max-w-[180px]">

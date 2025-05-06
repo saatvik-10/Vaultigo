@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { File, Star, Trash } from "lucide-react";
-import { Tabs, Tab } from "@heroui/tabs";
-import Badge from "@/components/ui/Badge";
-import type { File as FileType } from "@/lib/db/schema";
+import { File, Star, Trash } from 'lucide-react';
+import { Tabs, Tab } from '@heroui/tabs';
+import Badge from '@/components/ui/Badge';
+import type { File as FileType } from '@/lib/db/schema';
 
 interface FileTabsProps {
   activeTab: string;
@@ -24,25 +24,24 @@ export default function FileTabs({
     <Tabs
       selectedKey={activeTab}
       onSelectionChange={(key) => onTabChange(key as string)}
-      color="primary"
-      variant="underlined"
+      variant='underlined'
+      color='default'
       classNames={{
-        base: "w-full overflow-x-auto",
-        tabList: "gap-2 sm:gap-4 md:gap-6 flex-nowrap min-w-full",
-        tab: "py-3 whitespace-nowrap",
-        cursor: "bg-primary",
+        base: 'w-full overflow-x-auto',
+        tabList: 'gap-2 sm:gap-4 md:gap-6 flex-nowrap min-w-full',
+        tab: 'py-3 whitespace-nowrap',
+        cursor: 'bg-primary',
       }}
     >
       <Tab
-        key="all"
+        key='all'
         title={
-          <div className="flex items-center gap-2 sm:gap-3">
-            <File className="h-4 w-4 sm:h-5 sm:w-5" />
-            <span className="font-medium">All Files</span>
+          <div className='flex items-center gap-2 sm:gap-3 text-blue'>
+            <File className='h-4 w-4 sm:h-5 sm:w-5' />
+            <span className='font-medium'>All Files</span>
             <Badge
-              variant="flat"
-              color="default"
-              size="sm"
+              className='bg-blue'
+              size='sm'
               aria-label={`${files.filter((file) => !file.isTrashed).length} files`}
             >
               {files.filter((file) => !file.isTrashed).length}
@@ -51,15 +50,14 @@ export default function FileTabs({
         }
       />
       <Tab
-        key="starred"
+        key='starred'
         title={
-          <div className="flex items-center gap-2 sm:gap-3">
-            <Star className="h-4 w-4 sm:h-5 sm:w-5" />
-            <span className="font-medium">Starred</span>
+          <div className='flex items-center gap-2 sm:gap-3 text-yellow-500'>
+            <Star className='h-4 w-4 sm:h-5 sm:w-5' />
+            <span className='font-medium'>Starred</span>
             <Badge
-              variant="flat"
-              color="warning"
-              size="sm"
+              className='bg-yellow-500'
+              size='sm'
               aria-label={`${starredCount} starred files`}
             >
               {starredCount}
@@ -68,15 +66,15 @@ export default function FileTabs({
         }
       />
       <Tab
-        key="trash"
+        key='trash'
+        className='text-pink'
         title={
-          <div className="flex items-center gap-2 sm:gap-3">
-            <Trash className="h-4 w-4 sm:h-5 sm:w-5" />
-            <span className="font-medium">Trash</span>
+          <div className='flex items-center gap-2 sm:gap-3 text-pink'>
+            <Trash className='h-4 w-4 sm:h-5 sm:w-5' />
+            <span className='font-medium'>Trash</span>
             <Badge
-              variant="solid"
-              color="danger"
-              size="sm"
+              className='bg-pink'
+              size='sm'
               aria-label={`${trashCount} files in trash`}
             >
               {trashCount}
