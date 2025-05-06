@@ -17,8 +17,8 @@ export default function FolderNavigation({
   return (
     <div className='flex flex-wrap items-center gap-2 text-sm overflow-x-auto pb-2'>
       <Button
-        variant='flat'
         size='sm'
+        className='bg-blue'
         isIconOnly
         onPress={navigateUp}
         isDisabled={folderPath.length === 0}
@@ -26,10 +26,9 @@ export default function FolderNavigation({
         <ArrowUpFromLine className='h-4 w-4' />
       </Button>
       <Button
-        variant='flat'
         size='sm'
         onPress={() => navigateToPathFolder(-1)}
-        className={folderPath.length === 0 ? 'font-bold' : ''}
+        className={folderPath.length === 0 ? 'font-bold bg-blue' : 'bg-blue'}
       >
         Home
       </Button>

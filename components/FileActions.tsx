@@ -26,7 +26,7 @@ export default function FileActions({
         <Button
           variant="flat"
           size="sm"
-          onClick={() => onDownload(file)}
+          onPress={() => onDownload(file)}
           className="min-w-0 px-2"
           startContent={<Download className="h-4 w-4" />}
         >
@@ -39,13 +39,13 @@ export default function FileActions({
         <Button
           variant="flat"
           size="sm"
-          onClick={() => onStar(file.id)}
+          onPress={() => onStar(file.id)}
           className="min-w-0 px-2"
           startContent={
             <Star
               className={`h-4 w-4 ${
                 file.isStarred
-                  ? "text-yellow-400 fill-current"
+                  ? "text-yellow-500 fill-current"
                   : "text-gray-400"
               }`}
             />
@@ -61,7 +61,7 @@ export default function FileActions({
       <Button
         variant="flat"
         size="sm"
-        onClick={() => onTrash(file.id)}
+        onPress={() => onTrash(file.id)}
         className="min-w-0 px-2"
         color={file.isTrashed ? "success" : "default"}
         startContent={
@@ -83,7 +83,7 @@ export default function FileActions({
           variant="flat"
           size="sm"
           color="danger"
-          onClick={() => onDelete(file)}
+          onPress={() => onDelete(file)}
           className="min-w-0 px-2"
           startContent={<X className="h-4 w-4" />}
         >

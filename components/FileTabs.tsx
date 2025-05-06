@@ -38,7 +38,7 @@ export default function FileTabs({
         title={
           <div className='flex items-center gap-2 sm:gap-3 text-blue'>
             <File className='h-4 w-4 sm:h-5 sm:w-5' />
-            <span className='font-medium'>All Files</span>
+            <span className='font-medium text-blue'>All Files</span>
             <Badge
               className='bg-blue'
               size='sm'
