@@ -72,10 +72,10 @@ export default function UserProfile() {
   };
 
   return (
-    <Card className='max-w-md mx-auto border border-default-200 bg-defaulslate-50 shadow-sm hover:shadow-md transition-shadow'>
+    <Card className='max-w-md mx-auto border border-pink bg-slate-50 shadow-sm hover:shadow-md transition-shadow'>
       <CardHeader className='flex gap-3'>
         <User className='h-6 w-6 text-primary' />
-        <h2 className='text-xl font-semibold'>User Profile</h2>
+        <h2 className='text-xl font-semibold text-pink'>User Profile</h2>
       </CardHeader>
       <Divider />
       <CardBody className='py-6'>
@@ -85,7 +85,7 @@ export default function UserProfile() {
               src={user.imageUrl}
               alt={fullName}
               size='lg'
-              className='mb-4 h-24 w-24'
+              className='mb-4 h-24 w-24 border-2 border-pink'
             />
           ) : (
             <Avatar
@@ -97,8 +97,8 @@ export default function UserProfile() {
           <h3 className='text-xl font-semibold'>{fullName}</h3>
           {user.emailAddresses && user.emailAddresses.length > 0 && (
             <div className='flex items-center gap-2 mt-1 text-default-500'>
-              <Mail className='h-4 w-4' />
-              <span>{email}</span>
+              <Mail className='h-4 w-4 text-blue' />
+              <span className='text-pink'>{email}</span>
             </div>
           )}
           {userRole && (
@@ -119,7 +119,7 @@ export default function UserProfile() {
           <div className='flex justify-between items-center'>
             <div className='flex items-center gap-2'>
               <Shield className='h-5 w-5 text-primary/70' />
-              <span className='font-medium'>Account Status</span>
+              <span className='font-medium text-pink'>Account Status</span>
             </div>
             <Badge
               color='success'
@@ -133,7 +133,7 @@ export default function UserProfile() {
           <div className='flex justify-between items-center'>
             <div className='flex items-center gap-2'>
               <Mail className='h-5 w-5 text-primary/70' />
-              <span className='font-medium'>Email Verification</span>
+              <span className='font-medium text-pink'>Email Verification</span>
             </div>
             <Badge
               color={
@@ -158,8 +158,7 @@ export default function UserProfile() {
       <Divider />
       <CardFooter className='flex justify-between'>
         <Button
-          variant='flat'
-          color='danger'
+          className='bg-pink/90'
           startContent={<LogOut className='h-4 w-4' />}
           onPress={handleSignOut}
         >
