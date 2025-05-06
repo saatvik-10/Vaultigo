@@ -420,19 +420,15 @@ export default function FileList({
       {filteredFiles.length === 0 ? (
         <FileEmptyState activeTab={activeTab} />
       ) : (
-        <Card
-          shadow='sm'
-          className='border border-pink bg-slate-50 overflow-hidden'
-        >
+        <Card shadow='sm' className='border border-pink overflow-hidden'>
           <div className='overflow-x-auto'>
             <Table
               aria-label='Files table'
               isStriped
-              color='default'
               selectionMode='none'
               classNames={{
                 base: 'min-w-full',
-                th: 'bg-default-100 text-default-800 font-medium text-sm',
+                th: 'bg-slate-50 text-pink font-medium text-sm',
                 td: 'py-4',
               }}
             >
@@ -443,13 +439,13 @@ export default function FileList({
                 <TableColumn className='hidden sm:table-cell'>
                   Added
                 </TableColumn>
-                <TableColumn width={240}>Actions</TableColumn>
+                <TableColumn width={220}>Actions</TableColumn>
               </TableHeader>
               <TableBody>
                 {filteredFiles.map((file) => (
                   <TableRow
                     key={file.id}
-                    className={`hover:bg-default-100 transition-colors ${
+                    className={`bg-slate-50 hover:bg-slate-300 transition-colors${
                       file.isFolder || file.type.startsWith('image/')
                         ? 'cursor-pointer'
                         : ''
@@ -460,7 +456,7 @@ export default function FileList({
                       <div className='flex items-center gap-3'>
                         <FileIcon file={file} />
                         <div>
-                          <div className='font-medium flex items-center gap-2 text-default-800'>
+                          <div className='font-medium flex items-center gap-2 text-blue'>
                             <span className='truncate max-w-[150px] sm:max-w-[200px] md:max-w-[300px]'>
                               {file.name}
                             </span>
@@ -474,16 +470,16 @@ export default function FileList({
                             )}
                             {file.isFolder && (
                               <Tooltip content='Folder'>
-                                <Folder className='h-3 w-3 text-default-400' />
+                                <Folder className='h-3 w-3 text-blue' />
                               </Tooltip>
                             )}
                             {file.type.startsWith('image/') && (
                               <Tooltip content='Click to view image'>
-                                <ExternalLink className='h-3 w-3 text-default-400' />
+                                <ExternalLink className='h-3 w-3 text-blue' />
                               </Tooltip>
                             )}
                           </div>
-                          <div className='text-xs text-default-500 sm:hidden'>
+                          <div className='text-xs text-blue sm:hidden'>
                             {formatDistanceToNow(new Date(file.createdAt), {
                               addSuffix: true,
                             })}
@@ -492,12 +488,12 @@ export default function FileList({
                       </div>
                     </TableCell>
                     <TableCell className='hidden sm:table-cell'>
-                      <div className='text-xs text-default-500'>
+                      <div className='text-xs text-blue'>
                         {file.isFolder ? 'Folder' : file.type}
                       </div>
                     </TableCell>
-                    <TableCell className='hidden md:table-cell'>
-                      <div className='text-default-700'>
+                    <TableCell className='hidden md:table-cell text-xs'>
+                      <div className='text-blue'>
                         {file.isFolder
                           ? '-'
                           : file.size < 1024
@@ -509,12 +505,12 @@ export default function FileList({
                     </TableCell>
                     <TableCell className='hidden sm:table-cell'>
                       <div>
-                        <div className='text-default-700'>
+                        <div className='text-blue'>
                           {formatDistanceToNow(new Date(file.createdAt), {
                             addSuffix: true,
                           })}
                         </div>
-                        <div className='text-xs text-default-500 mt-1'>
+                        <div className='text-xs text-blue mt-1'>
                           {format(new Date(file.createdAt), 'MMMM d, yyyy')}
                         </div>
                       </div>

@@ -43,11 +43,12 @@ export async function POST(req: NextRequest) {
             eq(files.isFolder, true)
           )
         );
-    } else {
-      return NextResponse.json(
-        { error: 'Parent folder not found' },
-        { status: 404 }
-      );
+      if (!parentFolder) {
+        return NextResponse.json(
+          { error: 'Parent folder not found' },
+          { status: 404 }
+        );
+      }
     }
 
     if (!file.type.startsWith('image/') && file.type !== 'application/pdf') {
@@ -75,7 +76,7 @@ export async function POST(req: NextRequest) {
       file: fileBuffer,
       fileName: uniqueFileName,
       folder: folderPath,
-      useUniqueFileName: true,
+      useUniqueFileName: false,
     });
 
     const fileData = {

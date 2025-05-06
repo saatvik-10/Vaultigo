@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json('Unauthorized', { status: 401 });
     }
 
-    if (!name || typeof name! == 'string' || name.trim() === '') {
+    if (!name || typeof name !== 'string' || name.trim() === '') {
       return NextResponse.json('Folder name is required', { status: 400 });
     }
 
