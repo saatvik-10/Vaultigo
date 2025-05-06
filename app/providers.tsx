@@ -1,5 +1,4 @@
 'use client';
-
 import type { ThemeProviderProps } from 'next-themes';
 import * as React from 'react';
 import { HeroUIProvider } from '@heroui/system';
@@ -49,6 +48,19 @@ const authenticator = async () => {
 export function Providers({ children, themeProps }: ProvidersProps) {
   const router = useRouter();
 
+  // Default theme properties if none are provided
+  const defaultThemeProps: ThemeProviderProps = {
+    attribute: 'data-theme',
+    defaultTheme: 'dark',
+    enableSystem: true,
+    enableColorScheme: true,
+    disableTransitionOnChange: false,
+    forcedTheme: 'dark', // Force dark theme
+  };
+
+  // Merge default props with any provided props
+  const mergedThemeProps = { ...defaultThemeProps, ...themeProps };
+
   return (
     <HeroUIProvider navigate={router.push}>
       <ImageKitProvider
@@ -58,7 +70,9 @@ export function Providers({ children, themeProps }: ProvidersProps) {
       >
         <ImageKitAuthContext.Provider value={{ authenticate: authenticator }}>
           <ToastProvider placement='top-right' />
-          <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
+          <NextThemesProvider {...mergedThemeProps}>
+            {children}
+          </NextThemesProvider>
         </ImageKitAuthContext.Provider>
       </ImageKitProvider>
     </HeroUIProvider>
