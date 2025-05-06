@@ -12,8 +12,8 @@ export async function GET(req: NextRequest) {
     }
 
     const searchParams = req.nextUrl.searchParams;
-    const queryUserId = searchParams.get('id');
-    const parentId = searchParams.get('parentId');
+    const queryUserId = searchParams.get("userId");
+    const parentId = searchParams.get("parentId");
 
     if (!queryUserId || queryUserId !== userId) {
       return NextResponse.json('Bad Request', { status: 400 });
