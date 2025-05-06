@@ -113,7 +113,9 @@ export default function UserProfile() {
           )}
         </div>
 
-        <Divider className='my-4' />
+        <div className='w-full flex justify-center mb-5'>
+          <div className='w-1/6 border-t border-blue'></div>
+        </div>
 
         <div className='space-y-4'>
           <div className='flex justify-between items-center'>
